@@ -10,6 +10,7 @@ task :vimrc do
 	puts "Creating sym link ~/.vimrc to #{vimrc}"
   puts `ln -sf #{vimrc} ~/.vimrc`
 	puts `mkdir ~/.vim_backup`
+	`yes | vim +PluginInstall +qall 2>/dev/null`
 end
 
 desc "Create sym_link for ssh config file"

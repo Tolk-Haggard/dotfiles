@@ -51,5 +51,6 @@ task :bash_funs do
 		end
 		puts "\"#{source_funs_cmd}\" added to #{bash_profile_path}"
 	end
-	puts `fgrep function ~/.bash_funs`
+	puts "Bash helper functions:"
+	puts `fgrep function bash/.bash_funs  | cut -d' ' -f2`
 end

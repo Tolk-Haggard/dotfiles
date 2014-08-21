@@ -25,3 +25,12 @@ task :os_pub_key do
 	puts `cat #{dotfiles_dir}/ssh/inventory | xargs -n1 ssh-copy-id`
 end
 
+desc "Sane git settings"
+task :setup_git, [:name, :email] do |t, args|
+	[ 'alias.staged "diff --cached"', 'alias.br branch', 'alias.co checkout',
+		'alias.amend "commit --amend"', 'alias.st status', 'alias.ci commit',
+		'alias.gp "push origin HEAD"', "user.email #{args[:email]}", "user.name \"#{args[:name]}\"",
+		'core.editor vim', 'alias.rb rebase'
+	].each { |command| `git config --global #{command}`}
+	puts `cat ~/.gitconfig`
+end

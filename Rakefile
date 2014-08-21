@@ -8,6 +8,7 @@ task :vimrc do
 	vimrc = dotfiles_dir << "/vim/.vimrc"
 	puts "Creating sym link ~/.vimrc to #{vimrc}"
   puts `ln -s #{vimrc} ~/.vimrc`
+	puts `mkdir ~/.vim_backup`
 end
 
 desc "Create sym_link for ssh config file"
@@ -33,4 +34,21 @@ task :setup_git, [:name, :email] do |t, args|
 		'core.editor vim', 'alias.rb rebase'
 	].each { |command| `git config --global #{command}`}
 	puts `cat ~/.gitconfig`
+end
+
+desc "bash helper functions"
+task :bash_funs do 
+	bash_profile_path = ENV['HOME'] + '/.bash_profile'
+	source_funs_cmd = 'source ~/.bash_funs'
+ 	include_cmd = 'source ~/bash_funs'
+ 	dotfiles_dir = File.dirname(__FILE__)
+ 	puts `ln -sf #{dotfiles_dir}/bash/.bash_funs ~/.bash_funs`
+	bash_profile_contents = File.read bash_profile_path
+	unless bash_profile_contents.include? source_funs_cmd 
+		open(bash_profile_path, 'a') do |f|
+				f.puts "\n" << source_funs_cmd
+		end
+		puts "\"#{source_funs_cmd}\" added to #{bash_profile_path}"
+	end
+	puts `fgrep function ~/.bash_funs`
 end

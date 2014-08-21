@@ -1,0 +1,12 @@
+function show_hidden {
+	defaults write com.apple.finder AppleShowAllFiles YES
+}
+function vimrc {
+	vim ~/.vimrc
+}
+function sshconfig {
+	vim ~/.ssh/config
+}
+function gp {
+	git gp
+}

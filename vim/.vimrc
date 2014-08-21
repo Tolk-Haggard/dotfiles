@@ -23,6 +23,8 @@ Plugin 'jimenezrick/vimerl'
 Plugin 'kien/ctrlp.vim'
 " NERD Tree
 Plugin 'scrooloose/nerdtree'
+" Zenburn is teh awesome
+Plugin 'jnurmine/zenburn'
  
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -52,5 +54,6 @@ set shell=bash
 set backup
 set backupdir=~/.vim_backup     " keep backups from proliferating
 set ff=unix
+color zenburn
 :imap kj <Esc>
 nmap <Leader>n :NERDTreeToggle<cr>

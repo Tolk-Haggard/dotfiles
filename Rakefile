@@ -17,3 +17,11 @@ task :sshconfig do
 	puts "Creating sym link ~/.ssh/config to #{sshconfig}"
   puts `ln -s #{sshconfig} ~/.ssh/config`
 end
+
+desc "Copy public key to Object Storage Cluster"
+task :os_pub_key do
+	dotfiles_dir = File.dirname(__FILE__)
+	puts `brew install ssh-copy-id`
+	puts `cat #{dotfiles_dir}/ssh/inventory | xargs -n1 ssh-copy-id`
+end
+

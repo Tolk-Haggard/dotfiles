@@ -51,5 +51,6 @@ set visualbell
 set shell=bash
 set backup
 set backupdir=~/.vim_backup     " keep backups from proliferating
+set ff=unix
 :imap kj <Esc>
 nmap <Leader>n :NERDTreeToggle<cr>

@@ -1,5 +1,6 @@
-task :default do
-	puts "welcome to dotfiles"
+task :default => [:vimrc, :sshconfig,  :bash_funs] do
+	puts "If you want to setup git, run the setup_git task"
+	puts "If you want to copy your public key to all known cloud hosts, run os_pub_key"
 end
 
 desc "Create sym_link for .vimrc file"

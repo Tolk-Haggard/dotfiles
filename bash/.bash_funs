@@ -10,3 +10,18 @@ function sshconfig {
 function gp {
 	git gp
 }
+
+function ca1-diskspace {
+	fgrep CA1 ~/inventory | fgrep RIAK | parallel -k ssh {} 'df -h | fgrep lib/riak'
+}
+function ca2-diskspace {
+	fgrep CA2 ~/inventory | fgrep RIAK | parallel -k ssh {} 'df -h | fgrep lib/riak'
+}
+function ca1-iostat {
+	echo 'avg-cpu:  %user   %nice %system %iowait  %steal   %idle'
+	fgrep CA1 ~/inventory | fgrep RIAK | parallel -k ssh {} 'iostat -c | tail -2' | sed '/^$/d'
+}
+function ca2-iostat {
+	echo 'avg-cpu:  %user   %nice %system %iowait  %steal   %idle'
+	fgrep CA1 ~/inventory | fgrep RIAK | parallel -k ssh {} 'iostat -c | tail -2' | sed '/^$/d'
+}

@@ -1,4 +1,4 @@
-task :default => [:vimrc, :sshconfig,  :bash_funs] do
+task :default => [:vimrc, :sshconfig, :sshinventory,  :bash_funs] do
 	puts "If you want to setup git, run the setup_git task"
 	puts "If you want to copy your public key to all known cloud hosts, run os_pub_key"
 end
@@ -19,6 +19,14 @@ task :sshconfig do
 	sshconfig = dotfiles_dir << "/ssh/config"
 	puts "Creating sym link ~/.ssh/config to #{sshconfig}"
   puts `ln -sf #{sshconfig} ~/.ssh/config`
+end
+
+desc "Create sym_link for ssh inventory file"
+task :sshinventory do
+	dotfiles_dir = File.dirname(__FILE__)
+	sshinv = dotfiles_dir << "/ssh/inventory"
+	puts "Creating sym link ~/inventory to #{sshinv}"
+  puts `ln -sf #{sshinv} ~/inventory`
 end
 
 desc "Copy public key to Object Storage Cluster"

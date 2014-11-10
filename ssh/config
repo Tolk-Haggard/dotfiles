@@ -1,13 +1,13 @@
-Host ca1-jumpbox
+Host jumpbox-a
 	User root
-	HostName 65.39.184.12
-Host ca2-jumpbox
+	HostName x.x.x.x
+Host jumpbox-b
 	User root
-	HostName 70.33.239.152
+	HostName x.x.x.x
 
-Host CA2T3OS*
+Host A*
 	User root
-	ProxyCommand ssh -q -W %h:%p ca2-jumpbox
-Host CA1T3OS*
+	ProxyCommand ssh -q -W %h:%p jumpbox-a
+Host B*
 	User root
-	ProxyCommand ssh -q -W %h:%p ca1-jumpbox
+	ProxyCommand ssh -q -W %h:%p jumpbox-b
